@@ -20,13 +20,38 @@ const lufthansa = {
 
 lufthansa.book(239, 'Kalpesh Khandagale');
 lufthansa.book(635, 'Kajal Khandagale');
-console.log(lufthansa);
+
 
 const eurowings = {
     airline: 'Eurowings',
     iataCode: 'EW',
     bookings: []
 }
+
+const book = lufthansa.book;
+
+// Dose NOT work
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 244, 'Pradeep Kadam');
+console.log(lufthansa);
+
+const airIndia = {
+    airline: 'Air India',
+    iataCode: 'AI',
+    bookings: []
+}
+
+book.call(airIndia, 12, 'Kalpana Khandagale');
+
+
+// Apply method
+const flightData = [233, 'Harshala Kuveskar'];
+book.apply(airIndia, flightData);
+
+book.call(airIndia, ...flightData);
+console.log(airIndia);
 
 // const oneWord = function (str) {
 //     return str.replace(/ /g, '').toLowerCase();
