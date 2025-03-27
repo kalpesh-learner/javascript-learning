@@ -53,6 +53,29 @@ book.apply(airIndia, flightData);
 book.call(airIndia, ...flightData);
 console.log(airIndia);
 
+// Bind method
+// book.call(eurowings, 23, 'Sarah Williams');
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookAI = book.bind(airIndia);
+
+bookEW(33, 'Khandagale Kalpesh');
+ 
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Rajesh Chaudhary');
+bookEW23('Sunil Mozar');
+
+// With Event Listenner
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+    console.log(this);
+    
+    this.planes++;
+    console.log(this.planes);
+}
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
 // const oneWord = function (str) {
 //     return str.replace(/ /g, '').toLowerCase();
 // }
